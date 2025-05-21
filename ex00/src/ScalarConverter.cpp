@@ -14,11 +14,22 @@ ScalarConverter::~ScalarConverter(void) { }
 
 ScalarConverter &ScalarConverter::operator=(const ScalarConverter &copy) { (void)copy; return (*this); }
 
+/*
+ * Cette fonction vérifie si la str est un char
+ * on vérifie que la str fais bien 1 caractère
+ * et on vérifie également que le texte n'est pas
+ * un chiffre
+ */
 static bool     isChar(const std::string &str)
 {
     return (str.length() == 1 && !std::isdigit(str[0]));
 }
 
+/*
+ * Cette fonction vérifie si la str représente un
+ * int en base 10, le pointeur end est le premier
+ * charactère non converti par strtol
+ */
 static bool     isInt(const std::string &str)
 {
     char *end;
@@ -27,6 +38,11 @@ static bool     isInt(const std::string &str)
     return (*end == '\0');
 }
 
+/*
+ * Cette fonction vérifie si la str représente un
+ * float valide avec f à la fin ou si c'est un
+ * pseudo-littéral
+ */
 static bool     isFloat(const std::string &str)
 {
     char *end;
@@ -37,6 +53,10 @@ static bool     isFloat(const std::string &str)
     return (*end == 'f');
 }
 
+/*
+ * Cette fonction vérifie si la str représente un
+ * double valide ou un pseudo-litéral
+ */
 static bool     isDouble(const std::string &str)
 {
     char *end;
